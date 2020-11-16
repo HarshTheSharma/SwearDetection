@@ -1,17 +1,16 @@
 import speech_recognition as sr
 
-r = sr.Recognizer()
-
-keyWord = '*'
-#The Google Api replaces swears with *'s
+recognizer = sr.Recognizer()
+key_phrase = '*'
+# The Google API censors swear words with *s
 
 with sr.Microphone() as source:
-    print('Please start speaking\n')
+    print('Please start speaking:\n')
     while True:
-        audio = r.listen(source)
+        audio_input = recognizer.listen(source)
         try:
-            text = r.recognize_google(audio)
-            if keyWord.lower() in text.lower():
+            text = recognizer.recognize_google(audio_input)
+            if key_phrase.lower() in text.lower():
                 print('Keyword detected in the speech.')
                 swore = True
         except Exception as e:
