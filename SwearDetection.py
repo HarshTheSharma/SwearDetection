@@ -7,7 +7,7 @@ keyWord = '*'
 
 with sr.Microphone() as source:
     print('Please start speaking\n')
-    while True: cccccccccccccccccc
+    while True:
         audio = r.listen(source)
         try:
             text = r.recognize_google(audio)
