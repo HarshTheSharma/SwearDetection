@@ -3,8 +3,6 @@ import speech_recognition as sr
 
 #variables
 recognizer = sr.Recognizer()
-key_phrase = '*'
-# The Google API censors swear words with "*" So this variable is essentially a list of every swear recognized by google
 
 #A loop comparing speech from the microphone to the variable above
 with sr.Microphone() as source:
@@ -13,8 +11,9 @@ with sr.Microphone() as source:
         audio_input = recognizer.listen(source)
         try:
             text = recognizer.recognize_google(audio_input)
-            if key_phrase.lower() in text.lower():
-                print('Keyword detected in the speech.')
+            if "*" in text.lower():
+                print('asterisk detected in the speech.')
+                #The API automatically replaces swear words with a set of asterisks, this if statment checks for this.
                 swore = True
         except Exception as e:
             print('Please speak again.')
